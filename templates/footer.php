@@ -5,7 +5,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; ZieBukuTamu 2024</span>
                     </div>
                 </div>
             </footer>
@@ -58,6 +58,16 @@
 
      <!-- Page level custom scripts -->
      <script src="assets/js/demo/datatables-demo.js"></script>
+
+     <script>
+        $(document).ready(function() {
+            window.setTimeout(function() {
+                $(".alert").fadeTo(500,0).slideUp(500, function(){
+                    $(this.remove());
+                });
+            }, 4000);
+        });
+     </script>
 
 </body>
 
