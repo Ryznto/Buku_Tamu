@@ -25,7 +25,7 @@ require_once('function.php');
         ?>
             <div class="alert alert-danger" role="alert">
                 Data gagal disimpan!
-            </div>
+            </div>  
     <?php
         }
     }
@@ -61,7 +61,7 @@ require_once('function.php');
                         <?php
                         // penomoran auto-inctrumen
                         $no = 1;
-                        //query untuk memanggil semua data dari tabel buku_user
+                        //query untuk memanggil semua data dari tabel   user
                         $users = query("SELECT * FROM users");
                         foreach ($users as $user) : ?>
                             <tr>
