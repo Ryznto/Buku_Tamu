@@ -15,7 +15,7 @@ require_once('function.php');
     <?php
     //jika ada tombol simpan
     if (isset($_POST['simpan'])) {
-        if (tambah_tamu($_POST) > 0) {
+        if (tambah_user($_POST) > 0) {
     ?>
             <div class="alert alert-success" role="alert">
                 Data Berhasil disimpan!
@@ -61,18 +61,18 @@ require_once('function.php');
                         <?php
                         // penomoran auto-inctrumen
                         $no = 1;
-                        //query untuk memanggil semua data dari tabel buku_tamu
-                        $users = query("SELECT * FROM user");
-                        foreach ($users as $user): ?>
+                        //query untuk memanggil semua data dari tabel buku_user
+                        $users = query("SELECT * FROM users");
+                        foreach ($users as $user) : ?>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td><?= $tamu['username'] ?></td>
-                                <td><?= $tamu['user_role'] ?></td>
+                                <td><?= $user['username'] ?></td>
+                                <td><?= $user['user_role'] ?></td>
                                 <td>
                                     <a class="btn btn-success" href="edit-user.php?id=<?= $user['id_user'] ?>">ubah</a>
-                                    <a onclick="retrun confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-user.php?id=<?= $user['id_tamu'] ?>">Hapus</a>
+                                    <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-user.php?id=<?= $user['id_user'] ?>">Hapus</a>
                                 </td>
-                            </tr>
+                            </tr>   
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -83,22 +83,22 @@ require_once('function.php');
 
     <?php
     //menganbil barang dari data tabel dengan kode terbesar
-    $query = mysqli_query($koneksi, "SELECT max(id_tamu) as kodeTerbesar FROM buku_tamu");
+    $query = mysqli_query($koneksi, "SELECT max(id_user) as kodeTerbesar FROM users");
     $data = mysqli_fetch_array($query);
-    $kodeTamu = $data['kodeTerbesar'];
+    $kodeuser = $data['kodeTerbesar'];
 
     //mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan di ubah ke integer dengan(int)
-    $urutan = (int) substr($kodeTamu, 2, 3);
+    $urutan = (int) substr($kodeuser, 3, 2);
 
     //nomoryang di ambil akan di tambah 1 untuk menentukan nomor urut berikutnya
     $urutan++;
 
     //membuat kode barang baru
-    //string sprint ("%03s",$urutan); berfungsi utuk membuat string menjadi 3 karakter
+    //string sprint ("%02s",$urutan); berfungsi utuk membuat string menjadi 3 karakter
 
     //angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya zt
-    $huruf = "zt";
-    $kodeTamu = $huruf . sprintf("%03s", $urutan);
+    $huruf = "usr";
+    $kodeuser = $huruf . sprintf("%02s", $urutan);
     ?>
 
     <!-- Modal -->
@@ -114,35 +114,26 @@ require_once('function.php');
 
                 <div class="modal-body">
                     <form method="post" action="">
-                        <input type="hidden" name="id_tamu" id_tamu value="<?= $KodeTamu ?>">
+                        <input type="hidden" name="id_user" id="id_user" value="<?= $Kodeuser ?>">
                         <div class="form-group row">
-                            <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
+                            <label for="username" class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama_tamu" name="nama_tamu">
+                                <input type="text" class="form-control" id="username" name="username">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                            <label for="password" class="col-sm-3 col-form-label">Password</label>
                             <div class=" col-sm-8">
-                                <textarea class="form-control" id="alamat" name="alamat"></textarea>
+                              <input type="password" class="form-control" id="password" name="password">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="no_hp" class="col-sm-3 col-form-label">No. Telpon</label>
+                            <label for="user_role" class="col-sm-3 col-form-label">User Role</label>
                             <div class=" col-sm-8">
-                                <input type="text" class="form-control" id="no_hp" name="no_hp">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="bertemu" class="col-sm-3 col-form-label">Bertemu dg. </label>
-                            <div class=" col-sm-8">
-                                <input type="text" class="form-control" id="bertemu" name="bertemu">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="kepentingan" class="col-sm-3 col-form-label">Kepentingan</label>
-                            <div class=" col-sm-8">
-                                <input type="text" class="form-control" id="kepentingan" name="kepentingan">
+                                <select class="form-control" id="user_role" name="user_role">
+                                    <option value="admin">Administrator</option>
+                                    <option value="operator">Operator</option>
+                                </select>
                             </div>
                         </div>
 

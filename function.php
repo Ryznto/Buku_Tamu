@@ -62,7 +62,25 @@ function hapus_tamu($id) {
 
     $query ="DELETE FROM buku_tamu WHERE id_tamu = '$id'";
 
-    mysqli_query($koneksi , $query);
+    mysqli_query($koneksi , $query);    
+
+    return mysqli_affected_rows($koneksi);
+}
+//user
+function tambah_user($data){
+    global $koneksi;
+
+    $kode           =htmlspecialchars($data["id_user"]);
+    $username       =htmlspecialchars($data["username"]);
+    $password       =htmlspecialchars($data["password"]);
+    $user_role      =htmlspecialchars($data["user_role"]);
+
+    //enkripsi password dengan password_hash
+    $password_hash = password_hash($password,PASSWORD_DEFAULT);
+
+    $query = "INSERT INTO users VALUES ('$kode','$username','$password_hash','$user_role')";
+
+    mysqli_query ($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
 }
