@@ -25,7 +25,7 @@ require_once('function.php');
         ?>
             <div class="alert alert-danger" role="alert">
                 Data gagal disimpan!
-            </div>  
+            </div>
     <?php
         }
     }
@@ -72,7 +72,7 @@ require_once('function.php');
                                     <a class="btn btn-success" href="edit-user.php?id=<?= $user['id_user'] ?>">ubah</a>
                                     <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-user.php?id=<?= $user['id_user'] ?>">Hapus</a>
                                 </td>
-                            </tr>   
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -86,6 +86,7 @@ require_once('function.php');
     $query = mysqli_query($koneksi, "SELECT max(id_user) as kodeTerbesar FROM users");
     $data = mysqli_fetch_array($query);
     $kodeuser = $data['kodeTerbesar'];
+    echo "ini kode terbesar", $kodeuser;
 
     //mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan di ubah ke integer dengan(int)
     $urutan = (int) substr($kodeuser, 3, 2);
@@ -114,7 +115,7 @@ require_once('function.php');
 
                 <div class="modal-body">
                     <form method="post" action="">
-                        <input type="hidden" name="id_user" id="id_user" value="<?= $Kodeuser ?>">
+                        <input type="hidden" name="id_user" id="id_user" value="<?= $kodeuser ?>">
                         <div class="form-group row">
                             <label for="username" class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-8">
@@ -124,7 +125,7 @@ require_once('function.php');
                         <div class="form-group row">
                             <label for="password" class="col-sm-3 col-form-label">Password</label>
                             <div class=" col-sm-8">
-                              <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
                         </div>
                         <div class="form-group row">
