@@ -26,10 +26,26 @@ require_once('function.php');
             <div class="alert alert-danger" role="alert">
                 Data gagal disimpan!
             </div>
+        <?php
+        }
+    } else if (isset($_POST['ganti_password'])) {
+        if (ganti_password($_POST) > 0) {
+        ?>
+            <div class="alert alert-success" role="alert">
+                Password Berhasil diubah!
+            </div>
+        <?php
+        } else {
+        ?>                                                          
+            <div class="alert alert-danger" role="alert">
+                Password gagal diubah!
+            </div>
     <?php
         }
     }
     ?>
+
+
 
 
 
@@ -69,6 +85,10 @@ require_once('function.php');
                                 <td><?= $user['username'] ?></td>
                                 <td><?= $user['user_role'] ?></td>
                                 <td>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#gantiPassword" data-id="<?= $user['id_user'] ?>">
+                                        Ganti Password
+                                    </button>
+
                                     <a class="btn btn-success" href="edit-user.php?id=<?= $user['id_user'] ?>">ubah</a>
                                     <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-user.php?id=<?= $user['id_user'] ?>">Hapus</a>
                                 </td>
@@ -86,7 +106,7 @@ require_once('function.php');
     $query = mysqli_query($koneksi, "SELECT max(id_user) as kodeTerbesar FROM users");
     $data = mysqli_fetch_array($query);
     $kodeuser = $data['kodeTerbesar'];
-    echo "ini kode terbesar", $kodeuser;
+
 
     //mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan di ubah ke integer dengan(int)
     $urutan = (int) substr($kodeuser, 3, 2);
@@ -147,14 +167,46 @@ require_once('function.php');
                 </form>
             </div>
         </div>
+    </div>
 
 
+        <!-- Modal ganti password -->
+
+<div class="modal fade" id="gantiPassword" tabindex="-1" aria-labelledby="gantiPasswordLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gantiPasswordLabel">Ganti Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                <input type="hidden" name="id_user" id="id_user">
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-3 col-form-label">Password Baru</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                    </div>
+             </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" name="ganti_password" class="btn btn-primary">Simpan</button>
+             </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
         <!-- /.container-fluid -->
+    
 
 
 
-        <?php
-        include_once('templates/footer.php');
-        ?>
+    <?php
+    include_once('templates/footer.php');
+    ?>

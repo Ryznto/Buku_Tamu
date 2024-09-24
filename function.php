@@ -117,3 +117,22 @@ function hapus_user($id) {
      return mysqli_affected_rows($koneksi);
 
 }
+//function ganti password user
+function ganti_password($data) {
+    global $koneksi;
+
+    $kode           = htmlspecialchars($data["id_user"]);
+    $password       = htmlspecialchars($data["password"]);
+    $password_hash  = password_hash($password,PASSWORD_DEFAULT);
+
+    $query = "UPDATE users SET
+              password        = '$password_hash'
+              WHERE id_user   = '$kode'";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+
+            
+    
+}

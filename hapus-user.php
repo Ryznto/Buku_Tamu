@@ -9,7 +9,7 @@
             // jika data berhasilvdi hapus maka akan muncul alert
             echo "<script>alert('Data berhasil di hapus!')</script>";
             // redirect kehalaman buku-tamu.php
-            echo "<script>window.location.href='users.php'</script>";
+            echo "<script>window.location.href='.php'</script>";
         } else {
             // jika gagal di hapus
             echo "<script>alert('Data gagal di hapus!')</script>";  
