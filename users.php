@@ -2,12 +2,15 @@
 include_once('templates/header.php');
 require_once('function.php');
 ?>
+<?php
+if (isset($_SESSION['role']) && $_SESSION['role'] != 'admin') {
+    echo "<script>alert('Anda tidak memiliki akses!')</script>";
+    echo "<script>window.location.herf='index.php'</script>";
+}
+?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-
-
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Data User</h1>

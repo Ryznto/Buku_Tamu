@@ -1,5 +1,6 @@
 <?php 
 include_once('templates/header.php');
+require_once('function.php')
 ?>
 
 <!-- Begin Page Content -->
@@ -75,11 +76,11 @@ include_once('templates/header.php');
                     <?php
                     if (isset($_POST['tampilkan'])) {
                         $p_awal = $_POST['p_awal'];
-                        $p_akhir = $_Post['p_akhir'];
+                        $p_akhir = $_POST['p_akhir'];
                     //penomoran auto intrucment
                     $no = 1;
                     // query untuk memangggil semua data dari tabel buku tamu
-                    $buku_tamu = query("SELECT * FROM buku_tamu WHERE tanggal BETWEEN 
+                    $buku_tamu =   query("SELECT * FROM buku_tamu WHERE tanggal BETWEEN 
                     '$p_awal' AND '$p_akhir' ");
                     foreach ($buku_tamu as $tamu): ?>
                         <tr>
@@ -91,15 +92,13 @@ include_once('templates/header.php');
                             <td><?= $tamu['bertemu'] ?></td>
                             <td><?= $tamu['kepentingan'] ?></td>    
                             <td>
-                                <a class="btn btn-success" href="edit-tamu.php?id=<?=
-                                $tamu['id_tamu'] ?>">Ubah</a>
-                                <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini')" class="btn btn-danger"
-                                 href="hapus-tamu.php?id=<?= $tamu['id_tamu'] ?>">Hapus</a>
+                                <a class="btn btn-success" href="edit-tamu.php?id=<?=$tamu['id_tamu'] ?>">Ubah</a>
+                                <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');" 
+                                   class="btn btn-danger" href="hapus-tamu.php?id=<?= $tamu['id_tamu'] ?>">Hapus</a>
                             </td>                
                         </tr>
                     <?php endforeach;
-                    }
-                    ?>
+                    }?>
                 </tbody>
             </table>
         </div>

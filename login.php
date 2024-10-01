@@ -1,8 +1,12 @@
 <?php
 require 'koneksi.php';
+//memulai sessionn
+session_start();
+
+
 if(isset($_POST['login'])) {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = $_POST['password']; 
 
     $result = mysqli_query($koneksi, "SELECT * FROM users WHERE username ='$username'");
 
@@ -14,6 +18,10 @@ if(isset($_POST['login'])) {
 
         if(password_verify($password, $row['password'])) {
              
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $row ['user_role'];
+
             //login berhasil
             header(("Location: index.php"));
             exit;
@@ -37,7 +45,7 @@ if(isset($_POST['login'])) {
     <title>SB Admin 2 - Login</title>
 
     <!-- Custom fonts for this template-->
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/img/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -58,8 +66,7 @@ if(isset($_POST['login'])) {
              </div>
     <?php
     endif;
-    ?>
-
+    ?> 
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -71,7 +78,8 @@ if(isset($_POST['login'])) {
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <img src="assets/images/login-page.png" alt="">
+                                <img class="img-fluid mx-auto w-100 p-1 h-100" 
+                                src="assets/img/undraw_posting_photo.svg" alt="">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
