@@ -48,6 +48,18 @@ if (isset($_SESSION['role']) && $_SESSION['role'] != 'admin') {
     }
     ?>
 
+    <?php
+    // cek apabila ada user login dan user role nya adalah admin maka tampilkan user
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin') :
+    ?>
+        <li class="nav-link">
+         <a class="nav-link" href="users.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>User</span>
+         </a>
+        </li>
+    <?php endif; ?>
+
 
 
 

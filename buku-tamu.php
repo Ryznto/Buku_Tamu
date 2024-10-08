@@ -31,6 +31,17 @@ require_once('function.php');
     }
     ?>
 
+    <?php
+    // cek apabila ada user login dan user role nya operator maka tampilkan buku-tamu
+    if (isset($_SESSION['role']) && $_SESSION['role'] =='operator') :
+    ?>
+        <li class="nav-item">
+            <a class="nav-link" href="buku-tamu.php">
+                <i class="fas fa-fw fa-book-open"></i>
+                <span>Buku Tamu</span>
+            </a>
+        </li>
+    <?php endif; ?>
 
 
     <!-- Data Example -->
