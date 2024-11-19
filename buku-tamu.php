@@ -33,7 +33,7 @@ require_once('function.php');
 
     <?php
     // cek apabila ada user login dan user role nya operator maka tampilkan buku-tamu
-    if (isset($_SESSION['role']) && $_SESSION['role'] =='operator') :
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 'operator') :
     ?>
         <li class="nav-item">
             <a class="nav-link" href="buku-tamu.php">
@@ -53,7 +53,9 @@ require_once('function.php');
                     <i class="fa fa-plus"></i>
                 </span>
                 <span class="text">Data Tamu</span>
+
             </button>
+
         </div>
 
         <div class="card-body">
@@ -131,7 +133,7 @@ require_once('function.php');
                 </div>
 
                 <div class="modal-body">
-                    <form method="post" action="">
+                    <!-- <form method="post" action="" enctype="multipart/form-data">
                         <input type="hidden" name="id_tamu" id_tamu value="<?= $KodeTamu ?>">
                         <div class="form-group row">
                             <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
@@ -140,36 +142,91 @@ require_once('function.php');
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                            <div class=" col-sm-8">
+                            <label for="alamat" class="col-sm-3 col-form-label"> Alamat</label>
+                            <div class="col-sm-8">
                                 <textarea class="form-control" id="alamat" name="alamat"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="no_hp" class="col-sm-3 col-form-label">No. Telpon</label>
-                            <div class=" col-sm-8">
+                            <label for="no_hp" class="col-sm-3 col-form-label"> No. Telepon</label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" id="no_hp" name="no_hp">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="bertemu" class="col-sm-3 col-form-label">Bertemu dg. </label>
-                            <div class=" col-sm-8">
+                            <label for="bertemu" class="col-sm-3 col-form-label"> Bertemu dg.</label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" id="bertemu" name="bertemu">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="kepentingan" class="col-sm-3 col-form-label">Kepentingan</label>
-                            <div class=" col-sm-8">
+                            <label for="kepentingan" class="col-sm-3 col-form-label"> Kepentingan</label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" id="kepentingan" name="kepentingan">
                             </div>
                         </div>
-                        
+
+                        <div class="form-group row">
+                            <label for="gambar" class="col-sm-3 col-form-label"> Unggah foto</label>
+                            <div class="custom-file col-sm-8">
+                                <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                                <label class="custom-file-label" for="gambar"></label>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                            <button type="submit" name="simpan" class="btn btn-primary">simpan</button>
+                        </div>
+                    </form> -->
+
+
+                    <form method="post" action="" enctype="multipart/form-data">
+                        <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamu ?>">
+                        <div class="form-group row">
+                            <label for="nama_tamu" class="col-sm-3 col-form-label"> Nama Tamu</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama_tamu" name="nama_tamu">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="alamat" class="col-sm-3 col-form-label"> Alamat</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="alamat" name="alamat"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="no_hp" class="col-sm-3 col-form-label"> No. Telepon</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="no_hp" name="no_hp">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="bertemu" class="col-sm-3 col-form-label"> Bertemu dg.</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="bertemu" name="bertemu">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="kepentingan" class="col-sm-3 col-form-label"> Kepentingan</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="kepentingan" name="kepentingan">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gambar" class="col-sm-3 col-form-label"> Unggah foto</label>
+                            <div class="custom-file col-sm-8">
+                                <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                                <label class="custom-file-label" for="gambar"></label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">keluar</button>
+                            <button type="submit" name="simpan" class="btn btn-primary">simpan</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                    <button type="submit" name="simpan" class="btn btn-primary">simpan</button>
-                </div>
-                </form>
             </div>
         </div>
 

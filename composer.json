@@ -1,0 +1,17 @@
+{
+    "name": "riyanto/buku_tamu",
+    "autoload": {
+        "psr-4": {
+            "Riyanto\\BukuTamu\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ryznto",
+            "email": "riyanto112211@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^2.1"
+    }
+}

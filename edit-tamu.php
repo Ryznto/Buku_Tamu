@@ -76,7 +76,14 @@ if (isset($_GET['id'])) {
                         <input type="text" class="form-control" id="kepentingan" name="kepentingan" value="<?= $data['kepentingan'] ?>">
                     </div>
                 </div>
-
+                
+                <div class="form-group row">
+                    <label for="gambar" class="col-sm-3 col-form-label">gambar</label>
+                    <div class=" col-sm-8">
+                        <img src="assets/uploadgambar/" alt="">
+                        <input type="file" class="form-control" id="gambar" name="gambar" value="<?= $data['gambar'] ?>">
+                    </div>
+                </div>
 
                 <div class="form-group row">
                     <label for="" class="col-sm-3 col-form-label"></label>
